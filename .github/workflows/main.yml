@@ -1,4 +1,4 @@
-name: cicd
+name: build and deploy
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  cicd:
+  build:
     runs-on: self-hosted
 
     #strategy:
@@ -21,8 +21,8 @@ jobs:
        # node-version: ${{ matrix.node-version }}
     steps: 
      - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
+       uses: docker/login-action@v1
+       with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: docker build and run and push
@@ -30,7 +30,16 @@ jobs:
        docker build -t 3iamlucifer12/website -f Dockerfile .
        docker run -d -p 9999:80 3iamlucifer12/website
        docker push 3iamlucifer12/website
-       
+    deploynodeapp:
+    needs: [build]
+    runs-on: self-hosted
+
+    steps:
+    - name: Deploy build
+      run: | 
+       docker run -d --name web -p 7777:80 3iamlucifer12/website
+       docker ps   
+  
         
 
      
