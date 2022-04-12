@@ -30,7 +30,7 @@ jobs:
         run: |
           sudo su
           sudo cp index.html /var/www/html/
-          sudo cp style.csss /var/www/html/
+          sudo cp style.csss /var/www/html/css
           sudo service apache2 restart
 
       # Runs a set of commands using the runners shell
