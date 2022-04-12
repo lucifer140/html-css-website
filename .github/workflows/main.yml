@@ -1,0 +1,36 @@
+name: cicd
+
+on:
+  push:
+    branches:
+      - helper-branch
+
+jobs:
+  cicd:
+    runs-on: self-hosted
+
+    #strategy:
+     # matrix:
+      #  node-version: [10.x]
+
+    #steps:
+    #- uses: actions/checkout@v2
+    #- name: Use Node.js ${{ matrix.node-version }}
+     # uses: actions/setup-node@v1
+      #with:
+       # node-version: ${{ matrix.node-version }}
+    steps: 
+     - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+    - name: docker build and run and push
+      run: |
+       docker build -t 3iamlucifer12/website -f Dockerfile .
+       docker run -d -p 9999:80 3iamlucifer12/website
+       docker push 3iamlucifer12/website
+       
+        
+
+     
