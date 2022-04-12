@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     #strategy:
      # matrix:
@@ -32,7 +32,7 @@ jobs:
        docker push 3iamlucifer12/website
     deploynodeapp:
     needs: [build]
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
     - name: Deploy build
