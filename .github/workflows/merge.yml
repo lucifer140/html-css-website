@@ -4,7 +4,7 @@ name: merge
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ develop ]
+    branches: [ main ]
   
 jobs:
   nightly-merge:
@@ -22,5 +22,6 @@ jobs:
         development_branch: 'main'
         allow_ff: false
         allow_forks: true
+     
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
