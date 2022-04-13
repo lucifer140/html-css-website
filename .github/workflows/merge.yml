@@ -7,7 +7,7 @@ on:
     branches: [ main ]
   
 jobs:
-  nightly-merge:
+  auto-merge:
 
     runs-on: ubuntu-latest 
 
