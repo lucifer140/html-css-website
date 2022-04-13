@@ -24,6 +24,9 @@ jobs:
         development_branch: 'main'
         allow_ff: false
         allow_forks: true
+        run: |
+         git config --global --add safe.directory /github/workspace 
+       
 
 
      
